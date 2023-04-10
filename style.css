@@ -1,0 +1,44 @@
+.editor {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+}
+
+.form {
+  flex: 1;
+  padding: 20px;
+  border-right: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  margin-bottom: 5px;
+}
+
+textarea {
+  height: 100px;
+}
+
+.preview {
+  flex: 1;
+  padding: 20px;
+  box-sizing: border-box;
+  overflow-y: scroll;
+}
+
+.line {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 20px;
+}
+
+.character-image {
+  height: 100px;
+  margin-right: 10px;
+}
