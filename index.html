@@ -1,84 +1,33 @@
-<template>
-  <div class="editor">
-    <h2>Scenario Editor</h2>
-    <form @submit.prevent="addLine">
-      <div class="form-group">
-        <label for="character-image-url">Character Image URL:</label>
-        <input id="character-image-url" type="text" v-model="line.characterImageUrl">
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Scenario Editor</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app">
+    <div class="editor">
+      <div class="form">
+        <div class="form-group">
+          <label>Character Image URL:</label>
+          <input v-model="currentLine.characterImageUrl" type="text">
+        </div>
+        <div class="form-group">
+          <label>Line:</label>
+          <textarea v-model="currentLine.line"></textarea>
+        </div>
+        <button @click="addLine">Add Line</button>
       </div>
-      <div class="form-group">
-        <label for="text">Text:</label>
-        <textarea id="text" v-model="line.text"></textarea>
-      </div>
-      <div class="form-group">
-        <label for="text-style">Text Style:</label>
-        <select id="text-style" v-model="line.textStyle">
-          <option value="normal">Normal</option>
-          <option value="bold">Bold</option>
-          <option value="italic">Italic</option>
-        </select>
-      </div>
-      <button type="submit">Add Line</button>
-    </form>
-    <div class="line-list">
-      <h3>Scenario Lines</h3>
-      <div class="line" v-for="line in scenarioLines" :key="line.id">
-        <img class="character-image" :src="line.characterImageUrl">
-        <p :style="{fontWeight: line.textStyle}" v-html="line.text"></p>
+      <div class="preview">
+        <div v-for="(line, index) in lines" :key="index" class="line">
+          <img v-if="line.characterImageUrl" :src="line.characterImageUrl" class="character-image">
+          <p v-html="line.formattedLine"></p>
+        </div>
       </div>
     </div>
   </div>
-</template>
-
-<script>
-export default {
-  data() {
-    return {
-      line: {
-        id: null,
-        characterImageUrl: "",
-        text: "",
-        textStyle: "normal"
-      },
-      scenarioLines: []
-    };
-  },
-  methods: {
-    addLine() {
-      this.line.id = Date.now();
-      this.scenarioLines.push(Object.assign({}, this.line));
-      this.line.characterImageUrl = "";
-      this.line.text = "";
-    }
-  }
-};
-</script>
-
-<style>
-.editor {
-  width: 80%;
-  margin: 0 auto;
-}
-
-.form-group {
-  margin-bottom: 1rem;
-}
-
-textarea {
-  width: 100%;
-  height: 10rem;
-  resize: none;
-}
-
-.line {
-  margin-top: 2rem;
-}
-
-.character-image {
-  width: 5rem;
-  height: 5rem;
-  margin-right: 1rem;
-  border-radius: 50%;
-  object-fit: cover;
-}
-</style>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
