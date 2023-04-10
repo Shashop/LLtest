@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Scenario Editor</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app">
+    <div class="editor">
+      <div class="form">
+        <div class="form-group">
+          <label>Character Image URL:</label>
+          <input v-model="currentLine.characterImageUrl" type="text">
+        </div>
+        <div class="form-group">
+          <label>Line:</label>
+          <textarea v-model="currentLine.line"></textarea>
+        </div>
+        <button @click="addLine">Add Line</button>
+      </div>
+      <div class="preview">
+        <div v-for="(line, index) in lines" :key="index" class="line">
+          <img v-if="line.characterImageUrl" :src="line.characterImageUrl" class="character-image">
+          <p v-html="line.formattedLine"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
